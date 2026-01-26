@@ -20,8 +20,8 @@ go run main.go
 
 **Build and run:**
 ```bash
-go build -o go-web-app .
-./go-web-app
+go build -o complete-devops-lifecycle .
+./complete-devops-lifecycle
 ```
 
 **Run tests:**
@@ -47,7 +47,7 @@ Once running, visit:
 ## Project Structure
 
 ```
-go-web-app/
+complete-devops-lifecycle/
 ├── main.go           # Server with route handlers
 ├── main_test.go      # Unit tests
 ├── go.mod            # Go module definition
