@@ -26,10 +26,15 @@ func contactPage(w http.ResponseWriter, r *http.Request) {
 }
 
 func healthCheck(w http.ResponseWriter, r *http.Request) {
-	// Health check endpoint for monitoring and K8s probes
+	// Health check endpoint for monitoring and Kubernetes probes
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("OK"))
+
+	if _, err := w.Write([]byte("OK")); err != nil {
+		http.Error(w, "Failed to write response", http.StatusInternalServerError)
+		return
+	}
 }
+
 
 func rootRedirect(w http.ResponseWriter, r *http.Request) {
 	// Redirect root to home page
