@@ -1,0 +1,20 @@
+# Kubernetes Service manifest for exposing the Go web application
+# This Service routes internal cluster traffic to the application pods
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-web-app
+  labels:
+    app: go-web-app
+
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+
+  selector:
+    app: go-web-app
+
+  type: ClusterIP

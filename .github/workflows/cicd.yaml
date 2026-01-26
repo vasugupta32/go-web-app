@@ -1,0 +1,106 @@
+# GitHub Actions workflow for CI/CD pipeline
+# This pipeline builds, tests, scans, containerizes, and updates Helm charts
+
+name: CI/CD
+
+# Trigger workflow on push to main branch
+# Ignore changes made only to Helm charts, Kubernetes manifests, and README
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - helm/**
+      - k8s/**
+      - README.md
+
+jobs:
+
+  # ------------------------
+  # Build & Test Go Project
+  # ------------------------
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Go environment
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.22
+
+      - name: Build application binary
+        run: go build -o go-web-app
+
+      - name: Run unit tests
+        run: go test ./...
+
+  # ------------------------
+  # Code Quality & Linting
+  # ------------------------
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Run GolangCI Linter
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.56.2
+
+  # ------------------------
+  # Build & Push Docker Image
+  # ------------------------
+  push:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Enable Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Authenticate to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-web-app:${{ github.run_id }}
+
+  # ------------------------
+  # Update Helm Chart Image Tag (GitOps style)
+  # ------------------------
+  update-newtag-in-helm-chart:
+    runs-on: ubuntu-latest
+    needs: push
+
+    steps:
+      - name: Checkout repository with write access
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TOKEN }}
+
+      - name: Update image tag in Helm values file
+        run: |
+          sed -i 's/tag: .*/tag: "${{ github.run_id }}"/' helm/go-web-app-chart/values.yaml
+
+      - name: Commit and push Helm chart changes
+        run: |
+          git config --global user.email "vasugupt32@gmail.com"
+          git config --global user.name "Vasu Gupta"
+          git add helm/go-web-app-chart/values.yaml
+          git commit -m "Update Docker image tag in Helm chart"
+          git push
