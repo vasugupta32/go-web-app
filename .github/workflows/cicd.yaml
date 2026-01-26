@@ -50,7 +50,7 @@ jobs:
       - name: Run GolangCI Linter
         uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.56.2
+          version: latest
 
   # ------------------------
   # Build & Push Docker Image
