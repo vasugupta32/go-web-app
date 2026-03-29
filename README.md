@@ -1,57 +1,90 @@
-# Go Web Application - Personal Portfolio
+# 🚀 Go Web Application – Personal Portfolio
 
-A clean and professional portfolio website built with Golang. This project demonstrates proficiency in Go backend development using only the standard library.
+[![Go Version](https://img.shields.io/badge/Go-1.22.5-blue?logo=go)](https://golang.org)
+[![Read on Medium](https://img.shields.io/badge/Read%20Detailed%20Blog-Medium-black?logo=medium)](https://medium.com/@vasugupt32/building-a-complete-ci-cd-pipeline-for-a-go-web-app-from-code-to-kubernetes-in-3-minutes-033340704f4d)
 
-## Features
+A clean, lightweight, and production-ready portfolio web application built using **Golang’s standard library (`net/http`)**.
+This project demonstrates strong backend fundamentals along with real-world **DevOps practices (CI/CD, containerization, deployment)**.
 
-✅ Lightweight web server using Go's `net/http` package  
-✅ Clean and maintainable code structure  
-✅ Responsive HTML pages with modern CSS styling  
-✅ Health check endpoint for monitoring  
-✅ Unit tests included  
-✅ Production-ready logging  
+---
 
-## Quick Start
+## 📖 Detailed Blog
 
-**Run the application:**
+I’ve written a complete step-by-step guide covering CI/CD pipeline, Docker, and Kubernetes deployment:
+
+👉 https://medium.com/@vasugupt32/building-a-complete-ci-cd-pipeline-for-a-go-web-app-from-code-to-kubernetes-in-3-minutes-033340704f4d
+
+---
+
+## ✨ Features
+
+* ✅ Lightweight HTTP server using Go standard library
+* ✅ Clean and maintainable project structure
+* ✅ Responsive UI with modern HTML & CSS
+* ✅ Health check endpoint for monitoring
+* ✅ Structured logging for production readiness
+* ✅ Unit testing support
+* ✅ Static file serving
+
+---
+
+## 🛠️ Tech Stack
+
+* **Language**: Go 1.22.5
+* **Backend**: net/http (Standard Library)
+* **Frontend**: HTML5, CSS3
+* **CI/CD**: GitHub Actions / Jenkins (as per blog)
+* **Containerization**: Docker
+* **Orchestration**: Kubernetes
+
+---
+
+## 🚀 Getting Started
+
+### ▶️ Run the application
+
 ```bash
 go run main.go
 ```
 
-**Build and run:**
+### ⚙️ Build and run
+
 ```bash
-go build -o complete-devops-lifecycle .
-./complete-devops-lifecycle
+go build -o go-web-app
+./go-web-app
 ```
 
-**Run tests:**
+### 🧪 Run tests
+
 ```bash
 go test -v ./...
 ```
 
-## Access the Application
+---
 
-Once running, visit:
-- 🏠 **Home**: http://localhost:8080/home
-- 👤 **About**: http://localhost:8080/about
-- 💼 **Projects**: http://localhost:8080/courses
-- 📧 **Contact**: http://localhost:8080/contact
-- 🏥 **Health**: http://localhost:8080/health
+## 🌐 Application Endpoints
 
-## Tech Stack
+| Endpoint   | Description       |
+| ---------- | ----------------- |
+| `/home`    | Home page         |
+| `/about`   | About page        |
+| `/courses` | Projects showcase |
+| `/contact` | Contact page      |
+| `/health`  | Health check      |
 
-- **Language**: Go 1.22.5
-- **Framework**: net/http (standard library)
-- **Frontend**: HTML5, CSS3
+Access locally:
+👉 http://localhost:8080
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
-complete-devops-lifecycle/
-├── main.go           # Server with route handlers
+go-web-app/
+├── main.go           # Application entry point & route handlers
 ├── main_test.go      # Unit tests
 ├── go.mod            # Go module definition
-├── static/           # Static HTML and CSS
+├── static/           # Static assets
 │   ├── home.html
 │   ├── about.html
 │   ├── courses.html
@@ -60,25 +93,35 @@ complete-devops-lifecycle/
 └── README.md
 ```
 
-## Why This Project?
+---
 
-This project demonstrates:
-- Clean Go code following best practices
-- RESTful routing with standard library
-- Serving static files efficiently
-- Production-ready features (logging, health checks)
-- Test-driven development
+## 🎯 Key Highlights
 
-Perfect for showcasing in a DevOps/Backend Developer portfolio!
+* Built using pure Go (no external frameworks)
+* Demonstrates backend + DevOps integration
+* CI/CD pipeline from code → Docker → Kubernetes
+* Production-ready structure with monitoring capability
 
-## Author
+---
+
+## 📈 Future Improvements
+
+* Add Prometheus & Grafana monitoring
+* Deploy using Nomad (HashiCorp stack)
+* Add authentication (JWT-based)
+* Improve UI/UX design
+
+---
+
+## 👨‍💻 Author
 
 **Vasu Gupta**
-- GitHub: [@vasugupta32](https://github.com/vasugupta32)
-- LinkedIn: [vasugupta32](https://www.linkedin.com/in/vasugupta32/)
 
-## License
+* GitHub: https://github.com/vasugupta32
+* LinkedIn: https://www.linkedin.com/in/vasugupta32/
 
-Apache License 2.0 - see LICENSE file for details.
+---
 
+## 📄 License
 
+This project is open-source and available under the MIT License.
