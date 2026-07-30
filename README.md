@@ -10,7 +10,7 @@ This project demonstrates strong backend fundamentals along with real-world **De
 
 ## 📖 Detailed Blog
 
-I’ve written a complete step-by-step guide covering CI/CD pipeline, Docker, and Kubernetes deployment:
+I’ve written a complete step-by-step guide covering CI/CD pipeline, Docker, and Kubernetes deployment:-
 
 👉 https://medium.com/@vasugupt32/building-a-complete-ci-cd-pipeline-for-a-go-web-app-from-code-to-kubernetes-in-3-minutes-033340704f4d
 
