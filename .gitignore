@@ -7,7 +7,7 @@
 *.dll
 *.so
 *.dylib
-complete-devops-lifecycle
+go-web-app
 
 # Test binary, built with `go test -c`
 *.test
@@ -35,3 +35,4 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+AWSCLIV2.pkg

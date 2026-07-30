@@ -124,4 +124,4 @@ go-web-app/
 
 ## 📄 License
 
-This project is open-source and available under the MIT License.
+This project is open-source and available under the Apache License 2.0 — see [LICENSE](LICENSE) for details.

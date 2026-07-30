@@ -2,32 +2,51 @@ Install Amazon EKS
 
 Before starting, make sure you have completed all steps in the prerequisites document.
 
-🚀 Create an EKS Cluster (Free-Tier Friendly)
+# Install Amazon EKS
 
-For beginners and learners, it’s recommended to create a small managed node group to minimize AWS costs:
+Before starting, complete all steps in the prerequisites document.
 
+---
+
+## 🚀 Create an EKS Cluster (Recommended for DevOps Labs)
+
+To run tools like ArgoCD, Ingress Controller, and CI/CD workloads reliably,
+use a slightly larger instance type.
+
+```bash
 eksctl create cluster \
   --name demo-cluster \
   --region us-east-1 \
   --nodes 1 \
-  --node-type t3.small \
+  --node-type t3.medium \
   --managed
+✅ Why these options?
+--nodes 1 → keeps cost low for learning environments
 
-Why these options?
+--node-type t3.medium → enough CPU, memory, and pod capacity for:
 
---nodes 1 → creates only one worker node to reduce cost
+ArgoCD
 
---node-type t3.small → eligible for AWS Free Tier
+NGINX Ingress
 
---managed → AWS manages the node group for easier maintenance
+Sample applications
 
-This setup is ideal for testing, learning, and small demos.
+--managed → AWS handles node lifecycle and upgrades
 
-🗑 Delete the EKS Cluster (Important to avoid charges)
+ℹ️ Smaller instances like t3.small quickly hit pod limits and resource issues when running DevOps tools.
 
-When you’re finished, delete the cluster to prevent ongoing AWS costs:
+💰 Cost note (important)
+t3.medium is not Free Tier, but typically costs only a few dollars per day and avoids constant cluster failures.
+
+🗑 Delete the EKS Cluster (Always clean up)
+To prevent unnecessary charges:
 
 eksctl delete cluster \
   --name demo-cluster \
   --region us-east-1
+📌 Optional: Free-tier only (not recommended for GitOps)
+If you want to experiment with very small apps only:
+
+--node-type t3.small
+⚠️ Not suitable for ArgoCD or production-style setups.
 
